@@ -1,0 +1,122 @@
+#NA{width: 978px;}
+.Panel{margin: 0; width: 666px;background: #f5f5f5;}
+#NA .left .tabs{
+    border-bottom: 1px solid #DFDFDF;
+    height: 30px;
+    margin-top: 30px;
+    padding-left: 1px;
+}
+#NA .left .tabs p{
+    float: left;
+    margin-right: 4px;
+    position: relative;
+    border-top: 1px solid #dfdfdf;
+}
+#NA .left .tabs p .cur{
+    border-top: 1px solid #ff1800;
+}
+#NA .left .tabs p a{
+    position: relative;
+    margin: 0 -1px;
+    padding: 0 10px;
+    float: left;
+    border-left: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
+    color: #f60;
+    font: 14px/30px "宋体";
+}
+#NA .left .tabs  p.cur a{
+    background: #FF6600;
+    color: #fff;
+    border-left: 1px solid #FF6600;
+    border-right: 1px solid #FF6600;
+}
+#NA .left .tabs .email .ei i{
+    width: 20px;
+    height: 16px;
+    background-position: -154px -38px;
+    margin: 7px 5px 0 0;
+}
+#NA .left .tabs p i{
+    background: url("../img/icon2.png") -154px -38px no-repeat;
+    float: left;
+}
+#NA .left .tabs .cur .ei i{
+    background-position: -133px -38px;
+}
+#NA .left .tabs p.cur sub{display: block;}
+#NA .left .tabs p sub{
+    position: absolute;
+    width: 13px;height: 7px;
+    top:29px;left:45%;
+    background:url(../img/icon2.png) -190px -39px no-repeat;
+    display:none;
+}
+#NA .left .tabs .phone .pi i{
+    width:13px;
+    height:19px;
+    background-position: -148px -58px;
+    margin:5px 5px 0 0;
+}
+#NA .left .tabs .cur .pi i{
+    background-position: -133px -58px;
+}
+
+.step{height:100px;}
+.step p{background: url(../img/bg_x2.png) center repeat-x;width:270px;margin-left:100px;position:relative;float:left;height:30px;margin-top:30px;display: inline;}
+.step p span{color:#999;position: absolute;top:6px;line-height:18px; text-align: center;}
+.step p span i{display: inline-block;width:18px;height:18px;background: url(../img/icon2.png) -186px -61px no-repeat; text-align: center;}
+.step p .step1{left:-30px}
+.step p .step2{left:100px}
+.step p .step3{right:-30px}
+.step p .cur i{background-position: -168px -61px;color:#fff}
+.step p .cur{color:#fa7e17}
+#NA .left .PanelB .step p{width:200px}
+
+.reg_box{text-align: left;}
+.reg_box input{vertical-align: middle;}
+.reg_box .item{padding:0 0 20px 100px;position: relative;}
+.reg_box .item label{margin-left:-100px;text-align: right;float:left;width:112px;height:36px;font: 14px/36px "宋体";display: inline;color:#333}
+.reg_box .item .itext2,.reg_box .item .itext1{width:282px;height:30px;border:1px solid #d2d2d2; padding: 2px 3px;line-height: 30px}
+.reg_box .item .itext2{width:112px;}
+.reg_box .msg_zt1 .itext1,.reg_box .msg_zt1 .itext2{border-color:#badee2}
+.reg_box .msg_zt2 .itext1,.reg_box .msg_zt2 .itext2{border-color:#85c665}
+.reg_box .msg_zt3 .itext1,.reg_box .msg_zt3 .itext2{border-color:#ea9292}
+.reg_box .row1{line-height: 26px;}
+.reg_box .row2{line-height: 16px;}
+.reg_box .pw{padding-bottom:40px}
+.reg_box .item .strength{height:5px; width:292px; position: relative; top: 10px;left: 10px; _left:3px; margin: 0;}
+.strength span{width: 96px; color: #fff;}
+.reg_box .item .strength .pw-bar{height:5px;overflow: hidden;position:absolute;top:0;left:0;}
+.reg_box .item .pw-weak .pw-bar{background:#ea9292;width:101px;}
+.reg_box .item .pw-medium .pw-bar{background:#f8ae70;width:202px;}
+.reg_box .item .pw-forced .pw-bar{background:#85c665;width:302px}
+.reg_box .item .strength .pw-letter{position: absolute;top:10px;left:0;font:12px/14px "宋体";overflow: hidden;width:302px;text-align: center}
+.reg_box .item .strength .pw-letter span{width:101px;margin-left:-1px;float:left}
+.reg_box .item .strength .pw-bar span{width:100px;border-right:1px solid #f5f5f5;float:left;height:5px}
+.reg_box .i_code img{border:1px solid #ededed;height:34px; margin:0 10px;width:114px;}
+.reg_box .i_code .i_codeP a{text-decoration: none;width:154px;height:36px;background: url(../img/icon2.png) 0 -184px;display: inline-block; vertical-align: middle;color:#333;line-height: 36px;text-align: center;margin-left:10px}
+.reg_box .i_txt p{color:#999;margin-bottom:4px;}
+.reg_box .i_txt .msg_box{top:-4px}
+#phone .reg_box .i_txt .msg_box{top:18px}
+.reg_box .btn{width:115px;}
+.reg_box .load{background-position: -89px -147px;margin-right:10px;color:#999; cursor: default}
+.reg_box .item img{ vertical-align: middle}
+
+.tbtn{height:35px;cursor: pointer; background: url(../img/icon2.png) -73px 0 no-repeat;font:14px/34px "宋体";color:#fff;border: 0}
+
+
+/*---注册交互msg---*/
+.msg_box{display: inline-block; width:250px; position: absolute; top:8px;}
+.msg_box em,
+#NA .suc p em{width:26px;height:26px;float:left;background: url("../img/icon3.png") 0 0 no-repeat; margin-right:4px}
+.msg_zt1 .msg_box{color:#999}
+.msg_zt2 .msg_box{}
+.msg_zt3 .msg_box{color:#e58484}
+.msg_zt1 em{background-position:0 0}
+.msg_zt2 em,
+#pA2 .suc p em{background-position:0 -26px}
+.msg_zt3 em{background-position:0 -52px}
+
+#pA1 .right{width:250px;text-align: left;padding-left:35px}
+#pA1 .right .top h3{font:14px/34px "宋体";margin-top:50px}

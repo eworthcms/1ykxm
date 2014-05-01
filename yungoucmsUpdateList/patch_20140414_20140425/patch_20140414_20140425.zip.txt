@@ -1,0 +1,124 @@
+﻿*******************************************
+*******************************************
+******                            *********
+****** 所有文件请根据实际情况替换 *********
+******                            *********
+*******************************************
+*******************************************
+
+			**********************************	覆盖根目录即可,如果改了文件夹名称,请自行覆盖！  *******************************
+
+
+			YunGouCMS 3.1.0 版  升级时间: 20140425
+				
+				添加: 单品牌对多栏目
+				添加: 晒单回复验证码,圈子回复验证码
+				添加: 注册类型控制,每日注册量控制
+				
+				
+				修复: 用户获得的云购码显示完整,商品列表	
+				修复: 产品页面云购时间最近购买时间不显示
+				修复: 路由，手机版访问电脑版这样
+				修复: 后台会员中心信息显示不完整
+				修复: 手机注册提示短信配置不正确
+				修复: 购买多次经验值只增加一次
+				
+				
+				....
+
+
+
+
+
+**********************************************************************
+******       此补丁应用 20140414  升级到    20140425         *********
+**********************************************************************
+
+
+===============	system/config	===============
+system/config/version.inc.php
+
+
+===============	system/funcs	===============
+system/funcs/global.fun.php								新加函数,优化函数
+
+===============	system/libs	===============
+libs/system.class.php
+libs/mysql.class.php
+libs/param.class.php									路由，手机版访问电脑版这样
+
+
+
+===============	system/modules/api	===============
+system/modules/api/checkcode.action.php				重做验证码路径
+system/modules/api/brand.action.php					品牌所属多个分类
+system/modules/api/qqlogin.action.php				优化QQ登陆
+system/modules/api/up_file_140425.action.php		数据库升级,QQ绑定和添加字段
+
+
+
+===============	system/modules/admin	===============
+system/modules/admin/template.action.ph				模板
+system/modules/admin/brand.action.php				品牌所属多个分类
+system/modules/admin/tpl/brand.edit.tpl.php			单品牌绑定多分类
+system/modules/admin/tpl/brand.list.tpl.php			单品牌绑定多分类
+
+
+===============	system/modules/mobile	===============
+system/modules/mobile/ajax.action.php				手机注册,手机版登陆
+
+
+===============	system/modules/group	===============
+system/modules/group/group.action.php				圈子验证码
+
+
+===============	system/modules/member	===============
+system/modules/member/user.action.php 				一个账户重复注册或者希望未成功的在次注册
+system/modules/member/tpl/member_config.tpl.php		新加注册类型控制
+system/modules/member/tpl/member.lists.tpl.php		优化会员列表
+system/modules/member/lib/user_reg_type.ini.php		注册类型控制
+system/modules/member/member.action.php				注册类型控制
+
+
+===============	system/modules/go	===============
+system/modules/go/index.action.php					用户获得的云购码显示完整,商品列表
+system/modules/go/shaidan.action.php				晒单验证码
+
+
+===============	system/modules/pay	===============
+system/modules/pay/lib/pay.fun.php
+system/modules/pay/lib/pay.class.php
+
+
+
+
+- HTML模板文件	
+statics\templates\yungou\js\GLotteryFun.js				
+statics\templates\yungou\js\mobile/LoginFun.js								手机版登陆
+statics\templates\yungou\js\mobile/RegisterFun.js							手机版注册
+
+statics\plugin\style\global\css\index.css
+statics\plugin\style\global\css\style.css
+
+statics\templates\yungou\html/index.glist.html
+statics\templates\yungou\html/index.item.html		297行
+
+statics\templates\yungou\html/index.detail.html		101-104行,				添加验证码
+statics\templates\yungou\html/group.list.html		54-57行,				添加验证码
+statics\templates\yungou\html/group.nei.html
+
+statics\templates\yungou\html/mobile/index.footer.html						手机调整电脑版
+
+
+
+
+
+===========================================================
+===========================================================
+
+
+升级方式:   用解压后的文件夹直接覆盖网站上的文件.  如果修改了模板和自定义了文件请对比着修改
+
+			覆盖完成后请运行:   您的域名/api/up_file_140425			升级您的数据库
+
+

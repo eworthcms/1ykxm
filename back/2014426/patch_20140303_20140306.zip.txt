@@ -1,0 +1,73 @@
+﻿*******************************************
+*******************************************
+******                            *********
+****** 所有文件请根据实际情况替换 *********
+******                            *********
+*******************************************
+*******************************************
+
+			**********************************	覆盖根目录即可,如果改了文件夹名称,请自行覆盖！  *******************************
+
+
+			YunGouCMS 2.9.7 版  升级时间: 20140306
+				增加：后台会员模糊搜索
+				增加：新的短信发送接口
+				修复：系统启用伪静态后会员登陆跳出错误页面BUG
+				修复：查看购买记录时商品图片不显示
+				修复：修改每一个订单添加福分为购买次数添加福分
+
+
+
+
+
+**********************************************************************
+******       此补丁应用 20140303  升级到    20140306         *********
+**********************************************************************
+
+
+
+===============	system/modules/member	===============
+system/modules/member/home.action.php					查看购买记录时商品图片不显示
+system/modules/member/user.action.php					会员登陆
+system/modules/member/member.action.php					增加会员模糊搜索
+
+system/modules/member/tpl/member_select.tpl.php			增加会员模糊搜索				
+
+
+
+===============	system/modules/admin	===============
+system/modules/admin/setting.action.php  				新加短信接口
+system/modules/admin/tpl/config.mobile.tpl.php			短信发送
+
+
+===============	system/modules/api	===============
+system/modules/api/up_file_140306.action.php			后续升级文件需要手动运行
+
+
+===============	system/modules/pay	===============
+system/modules/pay/lib/pay.class.php		  			修改每一个订单添加福分为购买次数添加福分
+
+
+===============	system/modules/funcs	===============
+system/funcs/global.fun.php								短信发送函数优化
+
+===============	system/modules/libs	===============
+system/libs/sendmobile.class.php						新加短信接口
+
+
+===============	system/modules/config	===============
+system/config/version.inc.php
+
+
+
+- HTML模板文件
+
+statics\templates\yungou\html\member.userbuydetail.html	查看记录商品图片不显示		
+statics\templates\yungou\html\single_web.pleasereg.html	去除JS
+
+
+
+数据覆盖完成后请运行：		http://您的域名/?/api/up_file_140306				完成后续升级
+
+
+

@@ -1,0 +1,89 @@
+﻿*******************************************
+*******************************************
+******                            *********
+****** 所有文件请根据实际情况替换 *********
+******                            *********
+*******************************************
+*******************************************
+
+			**********************************	覆盖根目录即可,如果改了文件夹名称,请自行覆盖！  *******************************
+
+
+			YunGouCMS 3.0.0 版  升级时间: 20140414
+				
+				
+				修复: 会员个人主页链接错误		
+				修复：QQ群筛选不出来	
+				修复：后台验证码登陆提示错误
+				修复：移动路由跳转， 手机访问，现在直接会跳转到手机的绑定域名
+				修复：删除会员和QQ绑定一起删除
+				修复：福分BUG,重置到账户
+				修复：购买商品时重复多次提交，产生多个订单
+				修复：注册时 多次点击 发多次邮件
+				修复：购买记录时间超出页面内
+				....
+
+
+
+
+
+**********************************************************************
+******       此补丁应用 20140405  升级到    20140414         *********
+**********************************************************************
+
+
+===============	system/config	===============
+system/config/version.inc.php
+
+===============	system/funcs	===============
+#system/funcs/global.fun.php						新加函数
+
+
+
+===============	system/modules/api	===============
+system/modules/api/checkcode.action.php					重做验证码路径
+
+
+
+===============	system/modules/go	===============
+system/modules/go/qq_qun.action.php  	  		QQ群筛选不出来
+
+
+
+
+===============	system/modules/admin	===============
+system/modules/admin/tpl/qq_list.tpl.php				QQ群无法修改和删除
+system/modules/admin/tpl/user.login.tpl.php				验证码登陆提示错误
+
+
+
+
+===============	system/modules/member	===============
+system/modules/member/cart.action.php					重复提交
+system/modules/member/user.action.php					注册时 多次点击 发多次邮件
+system/modules/member/member.action.php					删除会员和QQ绑定一起删除，
+system/modules/member/tpl/member.lists.tpl.php			
+
+
+
+
+===============	system/modules/pay	===============
+system/modules/pay/lib/pay.class.php 					福分BUG,重置到账户
+
+
+
+- HTML模板文件	
+statics\templates\yungou\js\GLotteryFun.js				IE6兼容
+statics\templates\yungou\images\qqhot.gif				
+
+statics\templates\yungou\html\index.qq.html				QQ群筛选不出来
+statics\templates\yungou\html\us.index.html				个人主页昵称显示不正确
+statics\templates\yungou\html\us.userbuy.html			个人主页昵称显示不正确
+statics\templates\yungou\html\us.userraffle.html		个人主页昵称显示不正确
+
+statics\templates\yungou\html\cart.pay.html				修复重复提交
+statics\templates\yungou\html\member.userrecharge.html	修复重复提交
+statics\templates\yungou\html\mobile\cart.payment.html	修复手机重复提交
+
+statics\templates\yungou\html\index.item.html			云够时间简化
+
