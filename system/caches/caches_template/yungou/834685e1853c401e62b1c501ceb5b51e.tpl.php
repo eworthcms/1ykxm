@@ -97,6 +97,7 @@ function SetUploadFile(){
 	</div>
 	<form  action="<?php echo WEB_PATH; ?>/member/home/singleinsert" method="post">
 		<input type="hidden" name="shopid" value="<?php echo $shopid; ?>"/>
+		<input type="hidden" name="shopqishu" value="<?php echo $sd_qishu; ?>"/>
 		<div class="sd_lilie">
 			<span class="sd_span">标题：</span>
 			<input id="sd_text" type="text" name="title" />

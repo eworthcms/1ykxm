@@ -22,7 +22,7 @@
 		<span class="tel"><a href="<?php echo WEB_PATH; ?>" style="color: #999;">返回首页</a></span>
 	</div>
 </div>
-<form id="form_paysubmit" action="<?php echo WEB_PATH; ?>/<?php echo ROUTE_M; ?>/<?php echo ROUTE_C; ?>/paysubmit" method="post" onSubmit="return authOnce(this)" >
+<form id="form_paysubmit" action="<?php echo WEB_PATH; ?>/<?php echo ROUTE_M; ?>/<?php echo ROUTE_C; ?>/paysubmit" method="post">
 <div class="shop_payment">
 	<ul class="payment">
 		<li class="first_step">第一步：提交订单</li>
@@ -40,8 +40,8 @@
 			<li class="top">
 				<span class="name">商品名称</span>
 				<span class="moneys">价值</span>
-				<span class="money">开心购价</span>
-				<span class="num">开心购人次</span>
+				<span class="money">云购价</span>
+				<span class="num">云购人次</span>
 				<span class="all">小计</span>
 			</li>               
 			<?php $ln=1;if(is_array($shoplist)) foreach($shoplist AS $shops): ?>
@@ -166,6 +166,7 @@
 		</ul>
 	</div>
     <div class="payment_but" style="margin:15px 0 0 0;">
+			<input type="hidden" name="submitcode" value="<?php echo $submitcode; ?>">
 			<input id="submit_ok" class="shop_pay_but" type="submit" name="submit" value="">
 	</div>
     </form>
@@ -176,14 +177,14 @@
 			<li>2、如果您没有网银，可以使用银联在线支付，银联有支持无需开通网银的快捷支付和储值卡支付；</li>
 			<li>3、如果您有财付通或快钱、手机支付账户，可将款项先充入相应账户内，然后使用账户余额进行一次性支付；</li>
 			<li>4、如果银行卡已经扣款，但您的账户中没有显示，有可能因为网络原因导致，将在第二个工作日恢复。</li>
-			<li class="more"><a href="<?php echo WEB_PATH; ?>/help/liaojie">更多帮助</a>&nbsp;&nbsp;<a href="<?php echo WEB_PATH; ?>/member/home">进入我的开心购中心&gt;&gt;</a></li>
+			<li class="more"><a href="<?php echo WEB_PATH; ?>/help/liaojie">更多帮助</a>&nbsp;&nbsp;<a href="<?php echo WEB_PATH; ?>/member/home">进入我的云购中心&gt;&gt;</a></li>
 		</ul>
 	</div>
     
 </div><!--payment_Con end-->
 <script>
 $(function(){
-	var info={ 'money':<?php echo $Money; ?>,'MoenyCount':<?php echo $MoenyCount; ?>,"shoplen":<?php echo $shoplen; ?>, 'score':<?php echo $member['score']; ?> };
+	var info={'money':<?php echo $Money; ?>,'MoenyCount':<?php echo $MoenyCount; ?>,"shoplen":<?php echo $shoplen; ?>};
 	if(info['money'] >= info['MoenyCount']){
 		$("#divBankList").hide();
 		$("#liPayByOther").hide();
@@ -210,34 +211,29 @@ $(function(){
 			} 
 		});
 	}
-	// $("#shop_score_num").blur(function(){
-	// 		var fufen = parseInt($(this).val());
-	// 		var money = parseInt($(this).attr("money"));
-	// 		if(fufen>=info['score']){$(this).val(Math.floor(info['score']/money)*money);}else{$(this).val(Math.floor(fufen/money)*money);}
-						
-	// });
+	
+	
+	$("#submit_ok").click(function(){	
+		if(!this.cc){
+			this.cc = 1;		
+			return true;
+		}else{		
+			return false;
+		}		
+		return false;
+	});
+	
 	$("#shop_score_num").blur(function(){
 			var fufen = parseInt($(this).val());
 			var money = parseInt($(this).attr("money"));
-			if(fufen>=info['score']){	$(this).val(Math.floor(info['score']/money)*money);	}else{	$(this).val(Math.floor(fufen/money)*money);	}
+			$(this).val(Math.floor(fufen/money)*money);			
 	});
+	
 
 	//$("input[@type=radio][@checked]").val();
 	$(".click_img li>img").click(function(){			
 			$(this).prev().attr("checked",'checked');
 	});
-
-	var authnum = 0;
-	function authOnce(form)
-	{
-		if ( authnum == 0 ){
-			authnum++;
-			return true;
-		}else{
-			alert('正在操作中……');
-			return false;
-		};
-	}
 	
 });
 </script>

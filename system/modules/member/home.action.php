@@ -664,18 +664,19 @@ class home extends base {
 	}	
 	
 	//添加晒单
-	public function singleinsert(){	
+	public function singleinsert(){
 		$member=$this->userinfo;
 		$uid=_getcookie('uid');
 		$ushell=_getcookie('ushell');
 		$title="添加晒单";		
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']))
+        {
 	
 			if($_POST['title']==null)_message("标题不能为空");	
 			if($_POST['content']==null)_message("内容不能为空");	
-			if(!isset($_POST['fileurl_tmp'])){
-				_message("图片不能为空");
-			}
+//			if(!isset($_POST['fileurl_tmp'])){
+//				_message("图片不能为空");
+//			}
 			System::load_sys_class('upload','sys','no');
 			$img=$_POST['fileurl_tmp'];
 			$num=count($img);
@@ -695,28 +696,49 @@ class home extends base {
 		
 			$src_houzhui = upload::thumbs($width,$height,false,G_UPLOAD.'/'.$src);			
 			$thumbs=$src."_".intval($width).intval($height).".".$src_houzhui;			
-			
+
 			$uid=$this->userinfo;
 			$sd_userid=$uid['uid'];
 			$sd_shopid=$_POST['shopid'];
+            $sd_qishu=$_POST['shopqishu'];
 			$sd_title=$_POST['title'];
 			$sd_thumbs=$thumbs;
 			$sd_content=$_POST['content'];
 			$sd_photolist=$pic;
-			$sd_time=time();		
+			$sd_time=time();
 			$sd_ip = _get_ip_dizhi();						
-			$this->db->Query("INSERT INTO `@#_shaidan`(`sd_userid`,`sd_shopid`,`sd_ip`,`sd_title`,`sd_thumbs`,`sd_content`,`sd_photolist`,`sd_time`)VALUES
-			('$sd_userid','$sd_shopid','$sd_ip','$sd_title','$sd_thumbs','$sd_content','$sd_photolist','$sd_time')");
+			$this->db->Query("INSERT INTO `@#_shaidan`(`sd_userid`,`sd_shopid`,`sd_qishu`,`sd_ip`,`sd_title`,`sd_thumbs`,`sd_content`,`sd_photolist`,`sd_time`)VALUES
+			('$sd_userid','$sd_shopid','$sd_qishu','$sd_ip','$sd_title','$sd_thumbs','$sd_content','$sd_photolist','$sd_time')");
 			_message("晒单分享成功",WEB_PATH."/member/home/singlelist");
 		}
+
 		$recordid=intval($this->segment(4));
-		if($recordid>0){
-			$shaidan=$this->db->GetOne("select * from `@#_member_go_record` where `id`='$recordid'");		
-			$shopid=$shaidan['shopid'];
-			include templates("member","singleinsert");
-		}else{
-			_message("页面错误");
-		}
+        $shaidan=$this->db->GetOne("select * from `@#_member_go_record` where `id`='$recordid'");
+        $uid=$this->userinfo;
+
+        if( ($shaidan['huode']>0) && ($shaidan['uid']==$uid['uid']) )
+        {
+            //判断用户是否已经晒单，防止重复晒单
+            $sd_qishu = $shaidan['shopqishu'];
+            $shopid=$shaidan['shopid'];
+            $shaidannum = $this->db->GetOne("select `sd_id` from `@#_shaidan` where `sd_qishu`='$sd_qishu' and `sd_shopid`='$shopid' ");
+            if( $shaidannum )
+            {
+                _message("请不要重复晒单");
+            }
+            include templates("member","singleinsert");
+        }
+        else
+        {
+            _message("页面错误");
+        }
+//		if($recordid>0){
+//			$shaidan=$this->db->GetOne("select * from `@#_member_go_record` where `id`='$recordid'");
+//			$shopid=$shaidan['shopid'];
+//			include templates("member","singleinsert");
+//		}else{
+//			_message("页面错误");
+//		}
 	}
 	//编辑
 	public function singleupdate(){
