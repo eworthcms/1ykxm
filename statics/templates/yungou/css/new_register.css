@@ -131,7 +131,7 @@
     margin-top: 60px;
     position: relative;
     width: 365px;
-    height: 590px;
+    height: 405px;
     left: -13px;
     overflow: hidden;
 }
@@ -144,15 +144,18 @@
     display: block;
 }
 .rel-innder{
-    padding: 185px 0 0 0;
+    padding: 365px 0 0 0;
     text-align: center;
 }
-.rel-innder .rel-tit{color: #888;font-size: 16px;}
+.rel-innder .rel-tit{color: #888; font-size: 16px;}
 .rel-innder .rel-des{
-    color: #ff6f0f;
-    padding: 5px 14px;
-    width: 137px;
+    font-size: 15px;
+    color: #9f9f9f;
+    padding: 0 0 10px 0;
+    text-align: center;
+    width: 100%;
     white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
 }
 

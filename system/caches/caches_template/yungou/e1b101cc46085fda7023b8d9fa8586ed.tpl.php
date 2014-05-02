@@ -52,9 +52,9 @@ $(function(){
 
 	});
 })
-//    $(function(){
-//        $('.rel-banner').unslider();
-//    });
+    $(function(){
+        $('.rel-banner').unslider();
+    });
 </script>
 <div id="NA" class="newregisterform">
     <div class="left fl">
@@ -133,57 +133,21 @@ $(function(){
 
     <div class="fr rel-banner">
         <ul>
-            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/94846037435910.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/94846037435910.jpg);background-repeat:no-repeat;background-size: 100%; width: 80%;">
                 <div class="rel-innder">
                     <p class="rel-tit">TP-link</p>
                     <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
                     <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
                 </div>
             </li>
-            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/85791978439034.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/85791978439034.jpg);background-repeat:no-repeat;background-size: 100%; width: 80%;">
                 <div class="rel-innder">
                     <p class="rel-tit">TP-link</p>
                     <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
                     <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
                 </div>
             </li>
-            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/21335462436542.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
-                <div class="rel-innder">
-                    <p class="rel-tit">TP-link</p>
-                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
-                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
-                </div>
-            </li>
-            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/56038974437745.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
-                <div class="rel-innder">
-                    <p class="rel-tit">TP-link</p>
-                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
-                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
-                </div>
-            </li>
-
-            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/94846037435910.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
-                <div class="rel-innder">
-                    <p class="rel-tit">TP-link</p>
-                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
-                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
-                </div>
-            </li>
-            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/85791978439034.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
-                <div class="rel-innder">
-                    <p class="rel-tit">TP-link</p>
-                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
-                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
-                </div>
-            </li>
-            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/21335462436542.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
-                <div class="rel-innder">
-                    <p class="rel-tit">TP-link</p>
-                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
-                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
-                </div>
-            </li>
-            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/56038974437745.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/21335462436542.jpg);background-repeat:no-repeat;background-size: 100%; width: 80%;">
                 <div class="rel-innder">
                     <p class="rel-tit">TP-link</p>
                     <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
