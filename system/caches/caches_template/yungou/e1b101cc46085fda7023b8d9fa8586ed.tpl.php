@@ -1,4 +1,30 @@
-<?php defined('G_IN_SYSTEM')or exit('No permission resources.'); ?><?php include templates("index","header");?>
+<?php defined('G_IN_SYSTEM')or exit('No permission resources.'); ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?php if(isset($title)): ?><?php echo $title; ?><?php  else: ?><?php echo _cfg("web_name"); ?><?php endif; ?></title>
+    <meta name="keywords" content="<?php if(isset($keywords)): ?><?php echo $keywords; ?><?php  else: ?><?php echo _cfg("web_key"); ?><?php endif; ?>" />
+    <meta name="description" content="<?php if(isset($description)): ?><?php echo $description; ?><?php  else: ?><?php echo _cfg("web_des"); ?><?php endif; ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo G_TEMPLATES_CSS; ?>/Comm.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo G_TEMPLATES_CSS; ?>/register.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="//ucloud.1ykxm.com/statics/templates/yungou/css/login.css"/>-->
+    <script type="text/javascript" src="<?php echo G_GLOBAL_STYLE; ?>/global/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="<?php echo G_TEMPLATES_JS; ?>/jquery.cookie.js"></script>
+    <script src="//unslider.com/unslider.js"></script>
+</head>
+<body>
+<div class="header">
+    <div style="clear: both;"></div>
+    <div class="head_mid">
+        <div class="head_mid_bg">
+            <h1 class="logo_1yyg">
+                <a class="logo_1yyg_img" href="<?php echo G_WEB_PATH; ?>/" title="<?php echo _cfg('web_name'); ?>">
+                    <img src="<?php echo G_UPLOAD_PATH; ?>/<?php echo Getlogo(); ?>"/>
+                </a>
+            </h1>
+        </div>
+    </div>
+</div>
 <link href="<?php echo G_TEMPLATES_STYLE; ?>/js/style.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo G_TEMPLATES_STYLE; ?>/js/demo.css" rel="stylesheet" type="text/css" />
 <link href="http://www.1ykxm.com/statics/templates/yungou/css/new_register.css" rel="stylesheet" type="text/css" />
@@ -26,17 +52,19 @@ $(function(){
 
 	});
 })
+//    $(function(){
+//        $('.rel-banner').unslider();
+//    });
 </script>
-
 <div id="NA" class="newregisterform">
+    <div class="left fl">
     <form method="post" action="" enctype="application/x-www-form-urlencoded" onSubmit="return authOnce(this);">
-    <div class="left">
         <div class="tabs">
             <p class="email cur">
                 <a href="<?php echo WEB_PATH; ?>/new_register/&regtype=email" class="ei"><i></i>电子邮箱注册<sub></sub></a>
             </p>
             <p class="phone">
-                <a href="<?php echo WEB_PATH; ?>/new_register/&regtype=phone" class="pi"><i></i>手机号注册<sub></sub></a>
+                <a href="<?php echo WEB_PATH; ?>/new_register/&regtype=mobile" class="pi"><i></i>手机号注册<sub></sub></a>
             </p>
         </div>
         <div class="Panel PanelA" id="email">
@@ -93,10 +121,79 @@ $(function(){
             <div class="item">
                 <input type="submit" name="submit" class="Mem_orangebut btn" id="reg_submit" value="立即注册">
             </div>
+            <div class="item loginQQsingle" style="padding-top: 20px; width: 405px;">使用合作帐号登录:
+                <span id="qq_login_btn">
+                <a href="http://www.1ykxm.com/?/api/qqlogin/"><img src="http://ucloud.1ykxm.com/statics/templates/yungou/images/qqlogin.png"></a>
+                </span>
+            </div>
         </div>
     </div>
-    </div>
     </form>
+    </div>
+
+    <div class="fr rel-banner">
+        <ul>
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/94846037435910.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+                <div class="rel-innder">
+                    <p class="rel-tit">TP-link</p>
+                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
+                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
+                </div>
+            </li>
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/85791978439034.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+                <div class="rel-innder">
+                    <p class="rel-tit">TP-link</p>
+                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
+                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
+                </div>
+            </li>
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/21335462436542.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+                <div class="rel-innder">
+                    <p class="rel-tit">TP-link</p>
+                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
+                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
+                </div>
+            </li>
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/56038974437745.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+                <div class="rel-innder">
+                    <p class="rel-tit">TP-link</p>
+                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
+                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
+                </div>
+            </li>
+
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/94846037435910.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+                <div class="rel-innder">
+                    <p class="rel-tit">TP-link</p>
+                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
+                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
+                </div>
+            </li>
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/85791978439034.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+                <div class="rel-innder">
+                    <p class="rel-tit">TP-link</p>
+                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
+                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
+                </div>
+            </li>
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/21335462436542.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+                <div class="rel-innder">
+                    <p class="rel-tit">TP-link</p>
+                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
+                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
+                </div>
+            </li>
+            <li style="background-image: url(//www.1ykxm.com/statics/uploads/shopimg/20140425/56038974437745.jpg);background-repeat:no-repeat;background-size: 100%; width: 50%;">
+                <div class="rel-innder">
+                    <p class="rel-tit">TP-link</p>
+                    <p class="rel-des">TP-link1111111111111111111111111222222dfgdfgdfgsdsfg</p>
+                    <a href="http://www.1ykxm.com/?" target="_blank"><img src="http://www.1ykxm.com/statics/uploads/newbie/Guide_14.jpg" border="0" alt="立即开心购" width="160px" /></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div style="clear: both;"></div>
+
 </div>
 
 <script type="text/javascript">
@@ -112,4 +209,23 @@ function authOnce(form)
 	};
 }
 </script>
-<?php include templates("index","footer");?>
+
+<div class="footer_content">
+    <div class="footer_line"></div>
+</div>
+<!--footercontent end-->
+<div class="footer" style="height:auto;">
+    <div class="copyright"><?php echo _cfg('web_copyright'); ?></div>
+    <div class="footer_icon" style="width:400px;">
+        <ul>
+            <li class="fi_ectrustchina"><span></span></li>
+            <li class="fi_315online"><span></span></li>
+            <li class="fi_cnnic"><span></span></li>
+            <!-- <li class="fi_anxibao"><span></span></li> -->
+            <li class="fi_pingan"><span></span></li>
+        </ul>
+    </div>
+</div>
+<!--footer end-->
+</body>
+</html>

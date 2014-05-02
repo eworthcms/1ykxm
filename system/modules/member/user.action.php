@@ -167,6 +167,7 @@ class user extends base {
 
                 $user_ip = _get_ip_dizhi();
                 $sql="INSERT INTO `@#_member`(password,user_ip,img,emailcode,mobilecode,reg_key,yaoqing,time)VALUES('$userpassword','$user_ip','photo/member.jpg','-1','-1','$name','$decode','$time')";
+
                 $sqlreg = $this->db->Query($sql);
                 $check_code  = serialize(array("name"=>$name,"time"=>$time));
                 $check_code  = _encrypt($check_code,"ENCODE",'',3600*24);
@@ -178,7 +179,7 @@ class user extends base {
             }
             if($sqlreg){
                 header("location:".WEB_PATH."/member/user/".$regtype."check"."/".$check_code);
-                exit;
+
             }else{
                 _message("注册失败!",WEB_PATH.'/register');
             }
@@ -189,6 +190,10 @@ class user extends base {
 
     public function new_register()
     {
+        $config_email = System::load_sys_config("email");
+        $config_mobile = System::load_sys_config("mobile");
+        $regconfig = System::load_app_config("user_reg_type","",ROUTE_M);
+
         $regtype = $_GET['regtype'];
 
         switch(($_GET['regtype']))
@@ -196,12 +201,186 @@ class user extends base {
             case 'email':
                 if( isset($_POST['submit']) )
                 {
-                    _message("注册成功！", WEB_PATH);
+                    $name=isset($_POST['name']) ? $_POST['name'] : "";
+                    $userpassword=isset($_POST['userpassword']) ? $_POST['userpassword'] : "";
+                    $userpassword2=isset($_POST['userpassword2']) ? $_POST['userpassword2'] : "";
+
+                    if($name==null or $userpassword==null or $userpassword2==null){
+                        _message("帐号密码不能为空",null,3);
+                    }
+                    if(!(_checkemail($name))){
+                        _message("帐号不是邮箱",null,3);
+                    }
+                    if(strlen($userpassword)<6 || strlen($userpassword)>20){
+                        _message("密码小于6位或大于20位",null,3);
+                    }
+                    if($userpassword!=$userpassword2){
+                        _message("两次密码不一致",null,3);
+                    }
+                    if(_checkemail($name)){
+                        if(empty($config_email['user']) && empty($config_email['pass'])){
+                            _message("系统邮箱配置不正确!");
+                        }
+                    }
+
+                    //验证注册类型
+                    $regtype_arr = System::load_app_config("user_reg_type","",ROUTE_M);
+                    $regtypes = 'reg_'.$regtype;
+                    if(empty($regtype) || $regtype_arr[$regtypes] == 0){
+                        _message("网站未开启邮箱注册!",null,3);
+                    }
+                    $member=$this->db->GetOne("SELECT * FROM `@#_member` WHERE `$regtype` = '$name' or `reg_key` = '$name' LIMIT 1");
+
+                    if(is_array($member) && $member[$regtype] == $name){
+                        _message("该账号已被注册!",WEB_PATH.'/new_register/&regtype=email');
+                    }
+
+                    $register_type = 'def';
+                    if(is_array($member) && $member['reg_key'] == $name){
+                        $b_uid = $member['uid'];
+                        $b_user=$this->db->GetOne("SELECT * FROM `@#_member_band` WHERE `b_uid` = '$b_uid' LIMIT 1");
+                        if(is_array($b_user)){
+                            _message("该账号已被注册!",WEB_PATH.'/new_register/&regtype=email');
+                        }
+                        $register_type = 'for';	//未注册成功在次注册
+                    }
+
+
+                    $time=time();
+                    $userpassword=md5($userpassword);
+                    $codetype=$regtype.'code';
+                    $decode=_encrypt($this->segment(4),"DECODE");
+                    $decode = intval($decode);
+
+                    //邮箱验证 -1 代表未验证， 1 验证成功 都不等代表等待验证
+
+                    if($register_type == 'def')
+                    {
+
+                        $ip = _get_ip();
+                        $day_time = strtotime(date("Y-m-d"));
+                        $member_reg_num = $this->db->GetNum("SELECT uid FROM `@#_member` where `time` > '$day_time' and `user_ip` LIKE '%$ip%'");
+                        if($member_reg_num >= $regconfig['reg_num']){
+                            _message("您今日注册会员数已经达到上限！");
+                        }
+
+                        $user_ip = _get_ip_dizhi();
+                        $sql="INSERT INTO `@#_member`(password,user_ip,img,emailcode,mobilecode,reg_key,yaoqing,time)VALUES('$userpassword','$user_ip','photo/member.jpg','-1','-1','$name','$decode','$time')";
+                        $sqlreg = $this->db->Query($sql);
+                        $check_code  = serialize(array("name"=>$name,"time"=>$time));
+                        $check_code  = _encrypt($check_code,"ENCODE",'',3600*24);
+
+                    }
+                    elseif($register_type == 'for')
+                    {
+                        $sqlreg = true;
+                        $check_code  = serialize(array("name"=>$name,"time"=>$member['time']));
+                        $check_code  = _encrypt($check_code,"ENCODE",'',3600*24);
+                    }
+
+                    if($sqlreg){
+                        header("location:".WEB_PATH."/member/user/".$regtype."check"."/".$check_code);
+                        exit;
+                    }else{
+                        _message("注册失败!",WEB_PATH.'/new_register/&regtype=email');
+                    }
                 }
+                $title="注册"._cfg("web_name");
                 include templates("user","newregisteremail");
                 break;
-            case 'phone':
-                include templates("user","newregisterphone");
+            case 'mobile':
+                if( isset($_POST['submit']) )
+                {
+                    $name=isset($_POST['name']) ? $_POST['name'] : "";
+                    $userpassword=isset($_POST['userpassword']) ? $_POST['userpassword'] : "";
+                    $userpassword2=isset($_POST['userpassword2']) ? $_POST['userpassword2'] : "";
+
+                    if($name==null or $userpassword==null or $userpassword2==null){
+                        _message("帐号密码不能为空",null,3);
+                    }
+                    if(!(_checkmobile($name))){
+                        _message("帐号不是手机号码",null,3);
+                    }
+                    if(strlen($userpassword)<6 || strlen($userpassword)>20){
+                        _message("密码小于6位或大于20位",null,3);
+                    }
+                    if($userpassword!=$userpassword2){
+                        _message("两次密码不一致",null,3);
+                    }
+
+                    if(_checkmobile($name)){
+                        $cfg_mobile_type  = 'cfg_mobile_'.$config_mobile['cfg_mobile_on'];
+                        $config_mobile = $config_mobile[$cfg_mobile_type];
+                        if(empty($config_mobile['mid']) && empty($config_email['mpass'])){
+                            _message("系统短信配置不正确!");
+                        }
+                    }
+
+                    //验证注册类型
+                    $regtype_arr = System::load_app_config("user_reg_type","",ROUTE_M);
+                    $regtypes = 'reg_'.$regtype;
+                    if(empty($regtype) || $regtype_arr[$regtypes] == 0){
+                        _message("网站未开启手机注册!",null,3);
+                    }
+                    $member=$this->db->GetOne("SELECT * FROM `@#_member` WHERE `$regtype` = '$name' or `reg_key` = '$name' LIMIT 1");
+
+                    if(is_array($member) && $member[$regtype] == $name){
+                        _message("该账号已被注册!",WEB_PATH.'/new_register/&regtype=mobile');
+                    }
+
+                    $register_type = 'def';
+                    if(is_array($member) && $member['reg_key'] == $name)
+                    {
+                        $b_uid = $member['uid'];
+                        $b_user=$this->db->GetOne("SELECT * FROM `@#_member_band` WHERE `b_uid` = '$b_uid' LIMIT 1");
+                        if(is_array($b_user)){
+                            _message("该账号已被注册!",WEB_PATH.'/new_register/&regtype=mobile');
+                        }
+                        $register_type = 'for';	//未注册成功在次注册
+                    }
+
+                    $time=time();
+                    $userpassword=md5($userpassword);
+                    $codetype=$regtype.'code';
+                    $decode=_encrypt($this->segment(4),"DECODE");
+                    $decode = intval($decode);
+
+                    //邮箱验证 -1 代表未验证， 1 验证成功 都不等代表等待验证
+
+                    if($register_type == 'def')
+                    {
+                        $ip = _get_ip();
+                        $day_time = strtotime(date("Y-m-d"));
+                        $member_reg_num = $this->db->GetNum("SELECT uid FROM `@#_member` where `time` > '$day_time' and `user_ip` LIKE '%$ip%'");
+                        if($member_reg_num >= $regconfig['reg_num']){
+                            _message("您今日注册会员数已经达到上限！");
+                        }
+
+                        $user_ip = _get_ip_dizhi();
+                        $sql="INSERT INTO `@#_member`(password,user_ip,img,emailcode,mobilecode,reg_key,yaoqing,time)VALUES('$userpassword','$user_ip','photo/member.jpg','-1','-1','$name','$decode','$time')";
+                        $sqlreg = $this->db->Query($sql);
+                        $check_code  = serialize(array("name"=>$name,"time"=>$time));
+                        $check_code  = _encrypt($check_code,"ENCODE",'',3600*24);
+                    }
+                    elseif($register_type == 'for')
+                    {
+                        $sqlreg = true;
+                        $check_code  = serialize(array("name"=>$name,"time"=>$member['time']));
+                        $check_code  = _encrypt($check_code,"ENCODE",'',3600*24);
+                    }
+
+                    if($sqlreg)
+                    {
+                        header("location:".WEB_PATH."/member/user/".$regtype."check"."/".$check_code);
+                        exit;
+                    }
+                    else
+                    {
+                        _message("注册失败!",WEB_PATH.'/new_register/&regtype=mobile');
+                    }
+                }
+                $title="注册"._cfg("web_name");
+                include templates("user","newregistermobile");
                 break;
         }
     }
@@ -234,7 +413,6 @@ class user extends base {
 
         include templates("user","emailcheck");
     }
-
 
     /*
     *	重发验证邮件
