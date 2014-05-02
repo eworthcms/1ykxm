@@ -25,6 +25,7 @@
         </div>
     </div>
 </div>
+
 <link href="<?php echo G_TEMPLATES_STYLE; ?>/js/style.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo G_TEMPLATES_STYLE; ?>/js/demo.css" rel="stylesheet" type="text/css" />
 <link href="http://www.1ykxm.com/statics/templates/yungou/css/new_register.css" rel="stylesheet" type="text/css" />
@@ -49,7 +50,6 @@ $(function(){
 				}
 			}
 		}
-
 	});
 })
     $(function(){
@@ -157,7 +157,6 @@ $(function(){
         </ul>
     </div>
     <div style="clear: both;"></div>
-
 </div>
 
 <script type="text/javascript">
