@@ -237,24 +237,33 @@ class cart extends base {
 		if(!isset($_POST['submit'])){	
 			_message("正在返回购物车...",WEB_PATH.'/member/cart/cartlist');
 			exit;
-		}	
-		
-
-		session_start();		
-		if(isset($_POST['submitcode'])) {
-			if(isset($_SESSION['submitcode'])){
-				$submitcode = $_SESSION['submitcode'];
-			}else{
-				$submitcode = null;
-			}		
-			if($_POST['submitcode'] == $submitcode){			
-				unset($_SESSION["submitcode"]);      
-			}else{				
-				_message("请不要重复提交...",WEB_PATH.'/member/cart/cartlist');
-			}	
-		}else{
-			_message("正在返回购物车...",WEB_PATH.'/member/cart/cartlist');
 		}
+
+
+        session_start();
+        if(isset($_POST['submitcode']))
+        {
+            if(isset($_SESSION['submitcode']))
+            {
+                $submitcode = $_SESSION['submitcode'];
+            }
+            else
+            {
+                $submitcode = null;
+            }
+//			if($_POST['submitcode'] == $submitcode)
+//            {
+//				unset($_SESSION["submitcode"]);
+//			}
+//            else
+//            {
+//				_message("请不要重复提交...",WEB_PATH.'/member/cart/cartlist');
+//			}
+        }
+        else
+        {
+            _message("正在返回购物车...",WEB_PATH.'/member/cart/cartlist');
+        }
 	
 	
 		parent::__construct();	
